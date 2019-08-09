@@ -30,7 +30,7 @@
                             <a :href="item.seeAlso.value" target="_blank">
                                         <img :src="item.thumbnail.value" class="rounded img-raised"/>
                                     </a>
-                            <p class="mt-3"><a :href="item.seeAlso.value" target="_blank">{{item.title.value}}</a><br/>{{item.publisher.value}}</p>
+                            <p class="mt-3"><a :href="item.seeAlso.value" target="_blank">{{item.title.value}}</a><br/><small>{{item.publisher.value}}</small></p>
     
                         </div>
                     </div>
