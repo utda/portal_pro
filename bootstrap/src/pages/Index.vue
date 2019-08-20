@@ -28,7 +28,7 @@
                         <div class="col-md-2 my-4 px-4" v-for="item in items">
     
                             <a :href="item.seeAlso.value" target="_blank">
-                                        <img :src="item.thumbnail.value" class="rounded img-raised"/>
+                                        <v-lazy-image :src="item.thumbnail.value" class="rounded img-raised"/>
                                     </a>
                             <p class="mt-3"><a :href="item.seeAlso.value" target="_blank">{{item.title.value}}</a><br/><small>{{item.publisher.value}}</small></p>
     
@@ -44,13 +44,15 @@
 <script>
 import { Button, FormGroupInput } from '@/components';
 import axios from 'axios';
+import VLazyImage from "v-lazy-image";
 
 export default {
     name: 'landing',
     bodyClass: 'landing-page',
     components: {
         [Button.name]: Button,
-        [FormGroupInput.name]: FormGroupInput
+        [FormGroupInput.name]: FormGroupInput,
+        VLazyImage
     },
     data() {
         return {
@@ -90,6 +92,12 @@ export default {
 };
 </script>
 
-<style>
-
+<style scoped>
+.v-lazy-image {
+  filter: blur(10px);
+  transition: filter 0.7s;
+}
+.v-lazy-image-loaded {
+  filter: blur(0);
+}
 </style>
