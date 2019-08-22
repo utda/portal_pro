@@ -5,7 +5,7 @@
             </parallax>
             <div class="content-center">
                 <div class="container">
-                    <h1 class="title">東京大学学術資産等アーカイブズポータル・ポスター検索</h1>
+                    <h1 class="title">{{ $t("message.title") }}</h1>
                 </div>
             </div>
         </div>
@@ -16,7 +16,7 @@
     
                         <blockquote>
                             <p class="blockquote blockquote-primary">
-                                東京大学学術資産等アーカイブズポータルで公開されているポスターを一覧できます。
+                                {{ $t("message.block") }}
                             </p>
                         </blockquote>
                     </div>
@@ -28,8 +28,8 @@
                         <div class="col-md-2 my-4 px-4" v-for="item in items">
     
                             <a :href="item.seeAlso.value" target="_blank">
-                                        <v-lazy-image :src="item.thumbnail.value" class="rounded img-raised"/>
-                                    </a>
+                                <v-lazy-image :src="item.thumbnail.value" class="rounded img-raised" />
+                            </a>
                             <p class="mt-3"><a :href="item.seeAlso.value" target="_blank">{{item.title.value}}</a><br/><small>{{item.publisher.value}}</small></p>
     
                         </div>
@@ -56,13 +56,6 @@ export default {
     },
     data() {
         return {
-            form: {
-                firstName: '',
-                email: '',
-                message: ''
-
-
-            },
             items: []
         };
     },
@@ -77,16 +70,14 @@ export default {
         query += " UNION \n";
         query += " { ?s dcterms:isPartOf \"第一次世界大戦期プロパガンダポスターコレクション\"@ja . }  \n";
         query += " ?s dcndl:digitizedPublisher ?publisher . \n";
-        query += " filter (lang(?publisher) = \"ja\") . \n";
+        query += " filter (lang(?publisher) = \"" + this.$i18n.locale + "\") . \n";
         query += " ?s rdfs:seeAlso ?seeAlso . \n";
         query += " } order by ?title \n";
 
         axios.get("https://sparql.dl.itc.u-tokyo.ac.jp?query=" + encodeURIComponent(query) + "&output=json")
             .then(response => {
-
                 this.items = response.data.results.bindings
                 console.log(this.items)
-
             }).catch(error => { console.log(error); });
     }
 };
@@ -94,10 +85,11 @@ export default {
 
 <style scoped>
 .v-lazy-image {
-  filter: blur(10px);
-  transition: filter 0.7s;
+    filter: blur(10px);
+    transition: filter 0.7s;
 }
+
 .v-lazy-image-loaded {
-  filter: blur(0);
+    filter: blur(0);
 }
 </style>

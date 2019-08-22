@@ -1,0 +1,20 @@
+{
+  "ja": {
+    "message": {
+      "title": "東京大学学術資産等アーカイブズポータル・ポスター検索",
+      "block": "東京大学学術資産等アーカイブズポータルで公開されているポスターを一覧できます。",
+      "portal": "東京大学学術資産等アーカイブズポータル",
+      "team": "（東京大学附属図書館総務課／学術資産アーカイブ化推進室）",
+      "committee": "東京大学学術資産等アーカイブズ委員会事務局"
+    }
+  },
+  "en": {
+    "message": {
+      "title": "UTokyo Academic Archives Portal Poster Search",
+      "block": "Browse posters in UTokyo Academic Archives Portal",
+      "portal": "UTokyo Academic Archives Portal",
+      "team": "(General Affairs Division, University of Tokyo Library System / UTokyo Academic Archives Project Office)",
+      "committee": "Committee of Digital Archives of Academic Assets, The University of Tokyo"
+    }
+  }
+}

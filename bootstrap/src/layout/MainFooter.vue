@@ -2,8 +2,8 @@
     <footer class="footer" :class="{ [`footer-${type}`]: type }" :data-background-color="backgroundColor">
         <div class="container">
             <div class="copyright">
-                東京大学学術資産等アーカイブズ委員会事務局<br/> （東京大学附属図書館総務課／学術資産アーカイブ化推進室）
-                    <br/> E-mail：digital-archive [at] lib.u-tokyo.ac.jp.
+                {{ $t("message.committee") }}<br/> {{ $t("message.team") }}
+                    <br/> E-mail：digital-archive [at] lib.u-tokyo.ac.jp
             </div>
         </div>
     </footer>
