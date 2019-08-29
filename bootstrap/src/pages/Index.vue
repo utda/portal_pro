@@ -21,16 +21,17 @@
                         </blockquote>
                     </div>
                 </div>
+    
                 <div class="separator separator-primary"></div>
     
                 <div class="section-story-overview">
                     <div class="row">
-                        <div class="col-md-2 my-4 px-4" v-for="item in items">
+                        <div class="col-md-2 my-4 px-4" v-for="(item, i) in items" v-bind:key="i">
     
-                            <a :href="item.seeAlso.value" target="_blank">
+                            <a :href="item.relation.value" target="_blank">
                                 <v-lazy-image :src="item.thumbnail.value" class="rounded img-raised" />
                             </a>
-                            <p class="mt-3"><a :href="item.seeAlso.value" target="_blank">{{item.title.value}}</a><br/><small>{{item.publisher.value}}</small></p>
+                            <p class="mt-3"><a :href="item.relation.value" target="_blank">{{item.title.value}}</a><br/><small>{{item.publisher.value}}</small></p>
     
                         </div>
                     </div>
@@ -71,7 +72,7 @@ export default {
         query += " { ?s dcterms:isPartOf \"第一次世界大戦期プロパガンダポスターコレクション\"@ja . }  \n";
         query += " ?s dcndl:digitizedPublisher ?publisher . \n";
         query += " filter (lang(?publisher) = \"" + this.$i18n.locale + "\") . \n";
-        query += " ?s rdfs:seeAlso ?seeAlso . \n";
+        query += " ?s dcterms:relation ?relation . \n";
         query += " } order by ?title \n";
 
         axios.get("https://sparql.dl.itc.u-tokyo.ac.jp?query=" + encodeURIComponent(query) + "&output=json")
