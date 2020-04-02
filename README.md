@@ -1,17 +1,15 @@
-# UTokyo Digital Archives Project Pro
+# UTokyo Digital Archives Project Pro 2
 
-東京大学学術資産等アーカイブズポータルの活用例です。
+東京大学学術資産等アーカイブズポータルの活用例2です。
 
-## いろいろな利用のための材料
-* [Gallery](https://github.com/nakamura196/portal_pro/wiki/Gallery)
+## カレンダー検索
+* https://portal-pro.dl.itc.u-tokyo.ac.jp/calendar/
 
-## ツールとSPARQLエンドポイントの情報
-* [SPARQLエンドポイント](https://sparql.dl.itc.u-tokyo.ac.jp)
-* [Snorql for UTokyo Academic Archives Portal](https://nakamura196.github.io/portal_pro/snorql/) - ブラウザ用SPARQLインターフェイス
+## ポスター検索
+* https://portal-pro.dl.itc.u-tokyo.ac.jp/poster/
 
-## データセット
-* [IIIF Collection](https://github.com/nakamura196/portal_pro/blob/master/docs/data/collection.json)
-* [IIIF Collectionの閲覧](http://kanzaki.com/works/2016/pub/image-annotator?u=https://raw.githubusercontent.com/nakamura196/portal_pro/master/docs/data/collection.json) - Image Annotator（神崎正英氏作成）を用いてIIIF Collectionを閲覧する
+## Snorql
+* https://portal-pro.dl.itc.u-tokyo.ac.jp/snorql/
 
 ## License
 
