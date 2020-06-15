@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
+    />
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <div id="app">
+      <v-app>
+        <v-app-bar app>
+          <v-toolbar-title>
+            {{ title }}
+          </v-toolbar-title>
+          <v-spacer></v-spacer>
+
+          <v-btn
+            v-if="!isMobile"
+            class="mr-1"
+            text
+            depressed
+            href="https://da.dl.itc.u-tokyo.ac.jp/portal"
+            style="color: inherit; text-decoration: inherit;"
+          >
+            {{ portal }}
+          </v-btn>
+
+          <v-menu offset-y>
+            <template v-slot:activator="{ on }">
+              <v-btn depressed btn v-on="on">
+                <v-icon class="mr-2">mdi-translate</v-icon>
+                <template v-if="!isMobile">
+                  {{ lang == 'ja' ? '日本語' : 'English' }}
+                  <v-icon class="ml-2">mdi-menu-down</v-icon>
+                </template>
+              </v-btn>
+            </template>
+
+            <v-list>
+              <v-list-item @click="lang = 'ja'">
+                <v-list-item-title>日本語</v-list-item-title>
+              </v-list-item>
+              <v-list-item @click="lang = 'en'">
+                <v-list-item-title>English</v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
+        </v-app-bar>
+        <v-main>
+          <section class="mb-5">
+            <v-img
+              src="https://portal-pro.dl.itc.u-tokyo.ac.jp/poster/img/home.jpg"
+              gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)"
+              height="300px"
+            >
+              <v-row
+                align="center"
+                class="lightbox white--text pa-2 fill-height"
+              >
+                <v-col>
+                  <h1 class="display-1 text-center">
+                    <b>{{ title }}</b>
+                  </h1>
+                </v-col>
+              </v-row>
+            </v-img>
+          </section>
+          <v-container>
+            <v-sheet class="pa-5 text-center" color="grey lighten-3">
+              {{description}}
+            </v-sheet>
+
+            <v-row class="my-10">
+              <v-col
+                v-for="(obj, index) in results"
+                :key="index"
+                :cols="6"
+                :sm="2"
+              >
+                <v-card no-body>
+                  <a target="_blank" :href="obj.relation.value">
+                    <v-img
+                      :src="obj.thumbnail.value"
+                      contain
+                      style="height: 150px;"
+                      width="100%"
+                      class="grey lighten-2"
+                    ></v-img>
+                  </a>
+
+                  <div class="pa-4">
+                    <a :href="obj.relation.value" target="_blank" class="mr-2">
+                      <b v-html="obj.title.value"></b>
+                    </a>
+
+                    <div class="mt-2">
+                      {{ access[obj.publisher.value][lang] }}
+                    </div>
+                  </div>
+                </v-card>
+              </v-col>
+            </v-row>
+          </v-container>
+
+          <v-btn
+            v-show="fab"
+            v-scroll="onScroll"
+            fab
+            dark
+            fixed
+            bottom
+            right
+            large
+            color="error"
+            @click="toTop"
+          >
+            <v-icon>mdi-arrow-up</v-icon>
+          </v-btn>
+        </v-main>
+
+        <v-footer :dark="true" class="mt-5">
+          <v-container>
+            <p class="text-center my-5">
+              {{ project }}（{{ library }}) <br />digital-archive [at]
+              lib.u-tokyo.ac.jp
+            </p>
+          </v-container>
+        </v-footer>
+      </v-app>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        vuetify: new Vuetify(),
+        data: {
+          lang: "ja",
+          results: [],
+          fab: false,
+          access: {
+            "情報学環・学際情報学府": {
+              ja: "情報学環・学際情報学府",
+              en: "Graduate School of Interdisciplinary Information Studies",
+            },
+            "人文社会系研究科・文学部": {
+              ja: "人文社会系研究科・文学部",
+              en:
+                "Graduate School of Humanities and Sociology / Faculty of Letters",
+            },
+          },
+        },
+        created: function () {
+          var self = this;
+          axios.get("data.json").then(function (res) {
+            self.results = res.data.results.bindings;
+          });
+        },
+        methods: {
+          onScroll(e) {
+            if (typeof window === "undefined") return;
+            const top = window.pageYOffset || e.target.scrollTop || 0;
+            this.fab = top > 20;
+          },
+          toTop() {
+            this.$vuetify.goTo(0);
+          },
+        },
+        computed: {
+          title: function () {
+            return this.lang == "ja"
+              ? "東京大学学術資産等アーカイブズポータル・ポスター検索"
+              : "UTokyo Academic Archives Portal Poster Search";
+          },
+          description: function () {
+            return this.lang == "ja"
+              ? "東京大学学術資産等アーカイブズポータルで公開されているポスターを一覧できます。"
+              : "Browse posters in UTokyo Academic Archives Portal";
+          },
+          portal: function () {
+            return this.lang == "ja"
+              ? "東京大学学術資産等アーカイブズポータル"
+              : "UTokyo Academic Archives Portal";
+          },
+          project: function () {
+            return this.lang == "ja"
+              ? "東京大学学術資産等アーカイブズ委員会事務局"
+              : "Committee of Digital Archives of Academic Assets, The University of Tokyo";
+          },
+          library: function () {
+            return this.lang == "ja"
+              ? "東京大学附属図書館総務課／学術資産アーカイブ化推進室"
+              : "General Affairs Division, University of Tokyo Library System / UTokyo Academic Archives Project Office";
+          },
+          isMobile: function () {
+            const bp = this.$vuetify.breakpoint.name;
+            if (bp === "xs" || bp === "sm") {
+              return true;
+            } else {
+              return false;
+            }
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

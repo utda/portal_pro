@@ -1,6 +1,6 @@
 # UTokyo Digital Archives Project Pro 2
 
-東京大学学術資産等アーカイブズポータルの活用例2です。
+東京大学学術資産等アーカイブズポータルの活用例（ポスター検索など）です。
 
 ## カレンダー検索
 * https://portal-pro.dl.itc.u-tokyo.ac.jp/calendar/
