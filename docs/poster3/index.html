@@ -140,7 +140,7 @@
           <section class="mb-5">
             <v-img
               src="img/home.jpg"
-              gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)"
+              gradient="to top right, rgba(0,0,0,.33), rgba(0,0,0,.7)"
               height="300px"
             >
               <v-row
@@ -156,8 +156,11 @@
             </v-img>
           </section>
           <v-container>
-            <v-sheet class="pa-5 text-center" color="grey lighten-3">
-              {{description}}
+            <v-sheet class="pa-5" color="grey lighten-3">
+              <h4>{{description}}</h4>
+              <ul class="mt-5">
+                <li>{{lang == "ja" ? "最終更新日" : "Last Update"}}: 2020-06-15</li>
+              </ul>
             </v-sheet>
 
             <v-row class="my-10">
