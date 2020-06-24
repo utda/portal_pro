@@ -1,15 +1,9 @@
-# UTokyo Digital Archives Project Pro 2
+# UTokyo Academic Archives Portal Poster Search
 
-東京大学学術資産等アーカイブズポータルの活用例（ポスター検索など）です。
-
-## カレンダー検索
-* https://portal-pro.dl.itc.u-tokyo.ac.jp/calendar/
+東京大学学術資産等アーカイブズポータル・ポスター検索
 
 ## ポスター検索
 * https://portal-pro.dl.itc.u-tokyo.ac.jp/poster/
-
-## Snorql
-* https://portal-pro.dl.itc.u-tokyo.ac.jp/snorql/
 
 ## License
 
