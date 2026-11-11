@@ -4,7 +4,9 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
-    open-pull-requests-limit: 10
+    # npm の定期更新は止める（Nuxt 2 据え置きのため、メジャー更新の PR が毎月来て閉じるだけになる）。
+    # セキュリティ更新はこの上限の影響を受けず、これまでどおり届く。
+    open-pull-requests-limit: 0
     groups:
       minor-and-patch:
         update-types: ["minor", "patch"]
