@@ -5,6 +5,9 @@ name: CI
 
 on:
   pull_request:
+  push:
+    branches:
+      - master
   workflow_dispatch:
 
 permissions:
@@ -21,6 +24,10 @@ jobs:
           node-version: 22
           cache: npm
           cache-dependency-path: package-lock.json
-      # lockfile が package.json と合っていないリポジトリがあるので、その場合は入れ直す
-      - run: npm ci --ignore-scripts || npm install --ignore-scripts --no-audit --no-fund
+      - name: audit
+        if: hashFiles('scripts/audit.mjs') != ''
+        run: node scripts/audit.mjs
+      - run: npm ci --ignore-scripts
       - run: npm run build --if-present
+        env:
+          NODE_OPTIONS: --openssl-legacy-provider
