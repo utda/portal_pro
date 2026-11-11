@@ -1,0 +1,12 @@
+{
+  "name": "東京大学学術資産等アーカイブズポータル・ポスター検索",
+  "short_name": "UTDA",
+  "description": "東京大学学術資産等アーカイブズポータルで公開されているポスターを一覧できます。",
+  "icons": [],
+  "start_url": "/?standalone=true",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "lang": "ja",
+  "orientation": "portrait"
+}

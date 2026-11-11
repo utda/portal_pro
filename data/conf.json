@@ -1,0 +1,67 @@
+{
+  "lang": "ja",
+  "siteName": "東京大学学術資産等アーカイブズポータル・ポスター検索",
+  "siteDesc": "東京大学学術資産等アーカイブズポータルで公開されているポスターを一覧できます。",
+  "footer": "東京大学学術資産等アーカイブズ委員会事務局（東京大学附属図書館総務課／学術資産アーカイブ化推進室)",
+  "siteKeywords": "東京大学,ポスター",
+  "shortName": "UTDA",
+  "bc": true,
+  "index": "data/index.json",
+  "aggs": {
+    "collection": {
+      "key": "collection",
+      "sort": "",
+      "label": "collection",
+      "value": {},
+      "more": false,
+      "open": true
+    },
+    "department": {
+      "key": "department",
+      "sort": "",
+      "label": "department",
+      "value": {},
+      "more": false,
+      "open": true
+    },
+    "creator": {
+      "key": "creator",
+      "sort": "",
+      "label": "creator",
+      "value": {},
+      "more": false,
+      "open": true
+    },
+    "publisher": {
+      "key": "publisher",
+      "sort": "",
+      "label": "publisher",
+      "value": {},
+      "more": false,
+      "open": true
+    }
+  },
+  "hide": ["sort"],
+  "list": [],
+  "detail": [],
+  "sort": [{ "label": "適合度", "value": "_score" }],
+  "defaultSort": "_score:desc",
+  "layout": [
+    {
+      "label": "grid",
+      "value": "grid",
+      "icon": "mdi-view-grid",
+      "component": "search-layout-grid"
+    },
+    {
+      "label": "graph",
+      "value": "graph",
+      "icon": "mdi-chart-bar",
+      "component": "search-layout-graph"
+    }
+  ],
+  "defaultLayout": "grid",
+  "advanced": [],
+  "viewer": "curation",
+  "visualization": ""
+}
